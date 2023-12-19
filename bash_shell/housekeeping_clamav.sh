@@ -33,17 +33,17 @@ function getfilenames {
 }
      
 function doremove {
-	local LIST=$*               # List with filenames
+    local LIST=$*               # List with filenames
 
-	for ENTRY in ${LIST}; do
+    for ENTRY in ${LIST}; do
 #----------------------------------------------------------------------------------
 # For production, comment the following line, to avoid duplicate displays
-		echo $(ls -al $ENTRY)
+        echo $(ls -al $ENTRY)
 # For production, enable the next two lines to have the files removed!
 #        logger -t ${LOGTAG} "Removed: $(ls -al ${ENTRY})"
 #        rm  "${ENTRY}"
 #----------------------------------------------------------------------------------
-	done
+    done
 }
 
 ### Main program ########################################################
