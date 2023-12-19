@@ -56,23 +56,23 @@ SUDO_STATUS=`suDoer`
 
 userStatus() {
         
-	uname=`cat /etc/shadow | grep $user | awk -F":" '{print}'`
-	
-	a=`echo -e $uname | awk -F: '{print$3}'`
-	b=`echo -e $uname | awk -F: '{print$4}'`
-	c=`echo -e $uname | awk -F: '{print$5}'`
-	d=`echo -e $uname | awk -F: '{print$6}'`
-	e=`echo -e $uname | awk -F: '{print$7}'`
-	f=`echo -e $uname | awk -F: '{print$8}'`
+    uname=`cat /etc/shadow | grep $user | awk -F":" '{print}'`
+    
+    a=`echo -e $uname | awk -F: '{print$3}'`
+    b=`echo -e $uname | awk -F: '{print$4}'`
+    c=`echo -e $uname | awk -F: '{print$5}'`
+    d=`echo -e $uname | awk -F: '{print$6}'`
+    e=`echo -e $uname | awk -F: '{print$7}'`
+    f=`echo -e $uname | awk -F: '{print$8}'`
 
-	now=$(( ($(date +%s) / 86400) ))
-	pass=$(( $now - $a ))
+    now=$(( ($(date +%s) / 86400) ))
+    pass=$(( $now - $a ))
 
-        if [ $pass -gt 91 ]; then
-            echo EXPIRED
-        else
-            echo ACTIVE
-        fi
+    if [ $pass -gt 91 ]; then
+        echo EXPIRED
+    else
+        echo ACTIVE
+    fi
 }
 
 # This enters the user's status into a usable variable
@@ -87,24 +87,24 @@ USERSTATUS=`userStatus`
 
 host_user_url() {
 
-	if [ ! -d "/home/$user" ]; then
-  		# Control will enter here if $DIRECTORY doesn't exist.
-		HOME_DIR="/home/$user doesnt exist"		
-	fi
+    if [ ! -d "/home/$user" ]; then
+        # Control will enter here if $DIRECTORY doesn't exist.
+        HOME_DIR="/home/$user doesnt exist"
+    fi
 
-        url=`find /home/$user/  -maxdepth 1 -type l -printf "%p\n" 2>>error.log |rev |cut -d/ -f1 |rev |grep -v Agency_`
-        result=$?
-        if [ -z "$url" ] ; then
-            URL_STATUS="NO_ASSOCIATED_URL"
-        elif [ "$result" -eq 0 ] && [ -z "$url" ] ; then
-            URL_STATUS="NO_ASSOCIATED_URL"
-        elif [ "$result" -eq 0 ] && [ ! -z "$url" ] ; then
-            URL_STATUS=$url
-        elif [ $? -gt 0 ]; then
-            URL_STATUS="NO_ASSOCIATED_URL"
-        fi
+    url=`find /home/$user/  -maxdepth 1 -type l -printf "%p\n" 2>>error.log |rev |cut -d/ -f1 |rev |grep -v Agency_`
+    result=$?
+    if [ -z "$url" ] ; then
+        URL_STATUS="NO_ASSOCIATED_URL"
+    elif [ "$result" -eq 0 ] && [ -z "$url" ] ; then
+        URL_STATUS="NO_ASSOCIATED_URL"
+    elif [ "$result" -eq 0 ] && [ ! -z "$url" ] ; then
+        URL_STATUS=$url
+    elif [ $? -gt 0 ]; then
+        URL_STATUS="NO_ASSOCIATED_URL"
+    fi
 
-        echo $URL_STATUS $HOME_DIR
+    echo $URL_STATUS $HOME_DIR
 }
 
 HOST_USER_URL=`host_user_url`
