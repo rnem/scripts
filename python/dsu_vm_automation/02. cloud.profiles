@@ -1,0 +1,109 @@
+## /etc/salt/cloud.profiles
+
+1GBGP:
+ provider: nestdsulonm
+ size: 1 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ ssh_key_name: rtnco
+ com.cloudprovider__1__build_config_options: backup_agent_only,,monitoring_agent_only,updates
+
+
+2GBGP:
+ provider: nestdsulonm
+ size: 2 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ ssh_key_name: rtnco
+ com.cloudprovider__1__build_config_options: backup_agent_only,,monitoring_agent_only,updates
+
+4GBGP:
+ provider: nestdsulonm
+ size: 4 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ ssh_key_name: rtnco
+ com.cloudprovider__1__build_config_options: backup_agent_only,,monitoring_agent_only,updates
+
+
+8GBGP:
+ provider: nestdsulonm
+ size: 8 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ ssh_key_name: rtnco
+ com.cloudprovider__1__build_config_options: backup_agent_only,,monitoring_agent_only,updates
+
+nestdsulonm_small_staging:
+ provider: nestdsulonm
+ grains:
+  offering: small
+  environment: staging
+  location: lon3
+ extends: 1GBGP
+
+
+nestdsulonm_small_production:
+ provider: nestdsulonm
+ grains:
+  offering: small
+  environment: production
+  location: lon3
+ extends: 2GBGP
+
+
+nestdsulonm_medium_staging:
+ provider: nestdsulonm
+ grains:
+  offering: medium
+  environment: staging
+  location: lon3
+ extends: 2GBGP
+
+
+nestdsulonm_medium_production:
+ provider: nestdsulonm
+ grains:
+  offering: medium
+  environment: production
+  location: lon3
+ extends: 4GBGP
+
+nestdsulonm_large_staging:
+ provider: nestdsulonm
+ grains:
+  offering: large
+  environment: staging
+  location: lon3
+ extends: 4GBGP
+
+nestdsulonm_large_production:
+ provider: nestdsulonm
+ grains:
+  offering: large
+  environment: production
+  location: lon3
+ extends: 8GBGP
+
+
+extrasmall:
+ provider: nestdsulonm
+ size: 1 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ ssh_key_name: rtnco
+ com.cloudprovider__1__build_config_options: backup_agent_only,,monitoring_agent_only,updates
+ grains:
+  location: lon3
+
+extrasmall7:
+ provider: nestdsulonm
+ size: 1 GB General Purpose v1
+ image: CentOS 7 (PVHVM)
+ ssh_key_name: rtnco
+ grains:
+  location: lon3
+ com.cloudprovider__1__build_config_options: rack_user_only,base_mgdops_config,backup_agent_only,backup_defaults,monitoring_agent_only,monitoring_defaults,updates
+
+
+small-hkgm:
+ provider: nestdsuhkgm
+ size: 1 GB General Purpose v1
+ image: CentOS 6 (PVHVM)
+ grains:
+  location: hkg
