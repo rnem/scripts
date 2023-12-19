@@ -25,12 +25,12 @@
 # Exit 255 -> No directory given as cmdline option
 
 ### Variables
-APPPATH=$(dirname $0)							# Path where this script is started from
-CLAMLOG="/var/log/clamav/clamscan.log"			# The Logfile with the current scan results
-TMPFILE=$(mktemp /tmp/cron_clamscan.XXXXXXX)    # TMPFile for versionfinder.pl output
-DIR2SCAN="${*}"									# The starting directory that has to be scanned
-LOGGERTAG="ClamAV-Cron"							# The Tag for the logger entries in the syslog
-CLAMNICE=15										# ClamAV NICE value to run with, to not overuse the CPU
+APPPATH=$(dirname $0)	# Path where this script is started from
+CLAMLOG="/var/log/clamav/clamscan.log"	# The Logfile with the current scan results
+TMPFILE=$(mktemp /tmp/cron_clamscan.XXXXXXX)	# TMPFile for versionfinder.pl output
+DIR2SCAN="${*}"	# The starting directory that has to be scanned
+LOGGERTAG="ClamAV-Cron"	# The Tag for the logger entries in the syslog
+CLAMNICE=15	# ClamAV NICE value to run with, to not overuse the CPU
 
 trap 'do_remove_tmpfiles' EXIT SIGTERM SIGINT
 
