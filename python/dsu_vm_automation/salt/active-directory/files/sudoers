@@ -1,0 +1,12 @@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+##  Automated Configuration - DO NOT DELETE/CHANGE  ##
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+%nestfulladmin        ALL=(ALL)       ALL
+%wheel        ALL=(ALL)       ALL
+%nest_lamp_sudoers        ALL=(ALL)       ALL
+%{{ grains.host}}.nestrack.local        ALL=(ALL)       ALL
+
+cloudconnect ALL=(ALL) NOPASSWD:ALL
+cloud    ALL=(ALL) NOPASSWD: ALL # Cloud support
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
