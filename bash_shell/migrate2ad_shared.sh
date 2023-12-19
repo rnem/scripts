@@ -181,7 +181,7 @@ function do_set_acls {
             do_echo "/var/www/html/${WEB_CONTAINER}/ doesn't exist"
         fi
 
-	done
+    done
 
     do_echo "======================================================================================"
     do_echo "END OF SETTING THE PROPER ACLS"
