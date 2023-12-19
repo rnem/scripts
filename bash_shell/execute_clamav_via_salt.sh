@@ -12,8 +12,8 @@
 ### Variable definition #########################################################
 CURRDATE=$(date +"%Y%m%d-%H:%M")
 
-APPPATH="$(cd $(dirname $0) && pwd && cd - >/dev/null 2>&1)"	# Path where this script is started from
-CLAMAVLOG="${APPPATH}/${CURRDATE}_clamav_log"					# ClamAV Installation from the servers.
+APPPATH="$(cd $(dirname $0) && pwd && cd - >/dev/null 2>&1)"  # Path where this script is started from
+CLAMAVLOG="${APPPATH}/${CURRDATE}_clamav_log"                 # ClamAV Installation from the servers.
 EMAILTO="DL1@domain.com"
 EMAILCC="CC1@domain.com"
 EMAILFROM="noreply@clamav-installation-log"
