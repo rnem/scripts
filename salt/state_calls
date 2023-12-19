@@ -1,0 +1,1 @@
+salt -t 15 --no-color '*' state.sls services_monitoring
