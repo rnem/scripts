@@ -1,0 +1,32 @@
+---
+#################################################################################
+# Created by Roger Nem															#
+#																				#
+# Password Age of accounts in AIX, Linux and Solaris systems					#
+# Ansible Playbook to deploy script to hosts and fech results					#
+# file: check_pw_age_all.yml                                                    #
+#																				#
+# v0.001 - Roger Nem -  File created - 2018                                     #
+#################################################################################
+
+- hosts: all
+  gather_facts: false
+  tasks:
+
+   - name: Deploying script to all hosts
+     script: check_pw_age_all.sh
+
+   - name: Fetching the results to local /tmp
+     fetch: 
+       src: /tmp/pw_age.txt
+       dest: /tmp/pw_age/
+     become: false
+     become_method: sudo
+
+   - name: Deleting the results from all hosts
+     file: 
+       path: /tmp/pw_age.txt
+       state: absent
+
+...
+# vim:ft=ansible:
