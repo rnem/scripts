@@ -5,11 +5,11 @@
 # by Roger Nem (2015)                                                       #
 #                                                                           #
 # History:                                                                  #
-# 	v0.001  - First Version                                                 #
-#	v0.002  - Added a more precise insert of the infected files list into   #
+#  v0.001  - First Version                                                 #
+#  v0.002  - Added a more precise insert of the infected files list into   #
 #             the result mail. Only root can execute now.                   #
 #             Added the scanned dirs to mail.                               #
-#   v0.003  - Corrected error in Infection detection.                       #
+#  v0.003  - Corrected error in Infection detection.                       #
 #             Added noscan option to cmdline                                #
 #             Enhanced the mail output.                                     #
 #  v0.004   - Fixed "not found" sendmail bug. Added syslogging for sending  #
