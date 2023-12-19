@@ -26,23 +26,23 @@ EMAILMSG="***** ATTN: Large files report as of $today_date - PLEASE CLEAN UP ***
 # ----------------------------------------------------------------------------------------------------
 # 1 - Clean any existing generated file
 # ----------------------------------------------------------------------------------------------------
-[ -f "/root/scripts/largefiles/${filename_home}" ] && rm -f /root/scripts/largefiles/${filename_home}
-[ -f "/root/scripts/largefiles/${filename_html}" ] && rm -f /root/scripts/largefiles/${filename_html}
-[ -f "/root/scripts/largefiles/cron.log" ] && rm -f /root/scripts/largefiles/cron.log
+[ -f "/folder_largefiles/${filename_home}" ] && rm -f /folder_largefiles/${filename_home}
+[ -f "/folder_largefiles/${filename_html}" ] && rm -f /folder_largefiles/${filename_html}
+[ -f "/folder_largefiles/cron.log" ] && rm -f /folder_largefiles/cron.log
 
 # ----------------------------------------------------------------------------------------------------
 # 2 - Generate new list
 # ----------------------------------------------------------------------------------------------------
 for i in {1..21}
 do
-    salt "vm-all-php${i}-stag" cmd.run 'find /home -type f -size +100M -printf %TY-%Tm-%Td"  " -exec du -sh {} \;' >> /root/scripts/largefiles/${filename_home}
-    salt "vm-all-php${i}-stag" cmd.run 'find /var/www/html -type f -size +100M -printf %TY-%Tm-%Td"  " -exec du -sh {} \;' >> /root/scripts/largefiles/${filename_html}
+    salt "vm-all-php${i}-stag" cmd.run 'find /home -type f -size +100M -printf %TY-%Tm-%Td"  " -exec du -sh {} \;' >> /folder_largefiles/${filename_home}
+    salt "vm-all-php${i}-stag" cmd.run 'find /var/www/html -type f -size +100M -printf %TY-%Tm-%Td"  " -exec du -sh {} \;' >> /folder_largefiles/${filename_html}
 done
 
 # ----------------------------------------------------------------------------------------------------
 # 3 - Send email to the LAMP Team
 # ----------------------------------------------------------------------------------------------------
-if [ -s "/root/scripts/largefiles/${filename_home}" ];then
-    echo "${EMAILMSG}" | mail -s "${EMAILSUBJ}" -r "${EMAILFROM}" -a "/root/scripts/largefiles/${filename_home}" -a "/root/scripts/largefiles/${filename_html}" -c "${EMAILCC}" "${EMAILTO}"
+if [ -s "/folder_largefiles/${filename_home}" ];then
+    echo "${EMAILMSG}" | mail -s "${EMAILSUBJ}" -r "${EMAILFROM}" -a "/folder_largefiles/${filename_home}" -a "/folder_largefiles/${filename_html}" -c "${EMAILCC}" "${EMAILTO}"
     echo "Report generated and sent to $EMAILTO."
 fi
