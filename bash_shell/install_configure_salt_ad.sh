@@ -25,9 +25,9 @@ eth0=`/sbin/ifconfig eth0 | sed '/inet\ /!d;s/.*r://g;s/\ .*//g'`
 eth1=`/sbin/ifconfig eth1 | sed '/inet\ /!d;s/.*r://g;s/\ .*//g'`
 
 if [[ -z "$eth0" ]]; then
-	ip=$eth1;
+    ip=$eth1;
 else
-	ip=$eth0;
+    ip=$eth0;
 fi;
 
 alias_name=`echo $ip | sed 's/\./_/g'`
@@ -359,19 +359,19 @@ chown root:utmp /var/log/btmp && chmod 600 /var/log/btmp
 
 chown root:root $resolv_file
 chmod 644 $resolv_file
-chattr +i $resolv_file		# -rw-r--r-- 1 root root 77 Jun 12 18:48 /etc/resolv.conf
+chattr +i $resolv_file      # -rw-r--r-- 1 root root 77 Jun 12 18:48 /etc/resolv.conf
 
 chown root:root $nsswitch_file
-chmod 644 $nsswitch_file	# -rw-r--r-- 1 root root 335 Jun 12 18:48 /etc/nsswitch.conf
+chmod 644 $nsswitch_file    # -rw-r--r-- 1 root root 335 Jun 12 18:48 /etc/nsswitch.conf
 
 chown root:root $krb5_file
-chmod 644 $krb5_file		# -rw-r--r-- 1 root root 314 Jun 12 18:52 /etc/krb5.conf
+chmod 644 $krb5_file        # -rw-r--r-- 1 root root 314 Jun 12 18:52 /etc/krb5.conf
 
 chown root:root $smb_file
-chmod 644 $smb_file		# -rw-r--r-- 1 root root 242 Jun 12 18:49 /etc/samba/smb.conf
+chmod 644 $smb_file         # -rw-r--r-- 1 root root 242 Jun 12 18:49 /etc/samba/smb.conf
 
 chown root:root $sssd_file
-chmod 600 $sssd_file		# -rw------- 1 root root 511 Jun 12 18:50 /etc/sssd/sssd.conf
+chmod 600 $sssd_file        # -rw------- 1 root root 511 Jun 12 18:50 /etc/sssd/sssd.conf
 
 # -------------------------------------------------------
 # JOIN AD
@@ -396,19 +396,19 @@ yum -y install authconfig
 authconfig --update --enablesssd --enablesssdauth --enablemkhomedir --disableldap --disableldapauth --disablekrb5 --disablewinbind --disablewinbindauth
 
 if [ $(net ads testjoin >/dev/null 2>&1; echo $?) -eq 0 ]; then 
-	echo ""
-	echo -e "${LIGHTGREEN}Join is OK${NOCOLOR}"
+    echo ""
+    echo -e "${LIGHTGREEN}Join is OK${NOCOLOR}"
 else 
-	echo ""
-	echo -e "${RED}There was an error. Please verify /etc/hosts and /etc/samba/smb.conf and then run the commands below manually${NOCOLOR}"
-	echo ""
-	echo -e "${YELLOW}1) rm -rf /var/lib/sss/{db,mc}/*${NOCOLOR}"
-	echo -e "${YELLOW}2) kdestroy${NOCOLOR}"
-	echo -e "${YELLOW}3) kinit $username${NOCOLOR}"
-	echo -e "${YELLOW}4) net ads -k join${NOCOLOR}"
-	echo -e "${YELLOW}5) net ads testjoin${NOCOLOR}"
-	echo -e "${YELLOW}6) service sssd start${NOCOLOR}"
-	echo -e "${YELLOW}7) chkconfig sssd on${NOCOLOR}"
+    echo ""
+    echo -e "${RED}There was an error. Please verify /etc/hosts and /etc/samba/smb.conf and then run the commands below manually${NOCOLOR}"
+    echo ""
+    echo -e "${YELLOW}1) rm -rf /var/lib/sss/{db,mc}/*${NOCOLOR}"
+    echo -e "${YELLOW}2) kdestroy${NOCOLOR}"
+    echo -e "${YELLOW}3) kinit $username${NOCOLOR}"
+    echo -e "${YELLOW}4) net ads -k join${NOCOLOR}"
+    echo -e "${YELLOW}5) net ads testjoin${NOCOLOR}"
+    echo -e "${YELLOW}6) service sssd start${NOCOLOR}"
+    echo -e "${YELLOW}7) chkconfig sssd on${NOCOLOR}"
 fi;
 echo ""
 
