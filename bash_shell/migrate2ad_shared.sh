@@ -53,7 +53,7 @@ function do_shared_migration {
         SRV_NAME=$(echo ${USERARR[${i}]}|cut -d ";" -f 1)
         USR_LOCAL=$(echo ${USERARR[${i}]}|cut -d ";" -f 2)
         USR_AD=$(echo ${USERARR[${i}]}|cut -d ";" -f 3)
-        USR_AD=${USR_AD#*\\}        # Remove existing domain in front - nestlerack - not needed
+        USR_AD=${USR_AD#*\\}        # Remove existing domain in front - domainrack - not needed
         GROUP_AD=$(echo ${USERARR[${i}]}|cut -d ";" -f 4 | tr '[:upper:]' '[:lower:]')
         WEB_CONTAINER=$(echo ${USERARR[${i}]}|cut -d ";" -f 5 | tr '[:upper:]' '[:lower:]')
 
