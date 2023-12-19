@@ -145,9 +145,9 @@ function do_set_acls {
     do_echo "STARTING SETTING THE PROPER ACLS"
     do_echo "======================================================================================"
 
-	for WEB_CONTAINER in `cat ${SRCFILE} | cut -d ";" -f 5 | tr '[:upper:]' '[:lower:]' | sort | uniq`; do
+    for WEB_CONTAINER in `cat ${SRCFILE} | cut -d ";" -f 5 | tr '[:upper:]' '[:lower:]' | sort | uniq`; do
 
-		GROUP_AD=$(echo ${WEB_CONTAINER//_/\.})
+        GROUP_AD=$(echo ${WEB_CONTAINER//_/\.})
 
         # 3 - Assign proper permissions
 
