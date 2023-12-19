@@ -140,7 +140,7 @@ function do_shared_migration {
 
 function do_set_acls {
 
-	do_echo ""
+    do_echo ""
     do_echo "======================================================================================"
     do_echo "STARTING SETTING THE PROPER ACLS"
     do_echo "======================================================================================"
