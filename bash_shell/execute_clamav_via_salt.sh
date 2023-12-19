@@ -1,7 +1,7 @@
 #!/bin/bash
 #################################################################################
 #                                                                               #
-# Get clamav script to automate the creation process via salt       			#
+# Get clamav script to automate the creation process via salt                   #
 #                                                                               #
 # by Roger Nem 2015                                                             #
 # History:                                                                      #
