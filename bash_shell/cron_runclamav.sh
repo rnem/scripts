@@ -1,24 +1,24 @@
 #!/bin/bash
 #############################################################################
-#
-# ClamAV cron scan script
-# by Roger Nem (2015)
-#
-# History:
-# 	v0.001  - First Version
-#	v0.002  - Added a more precise insert of the infected files list into
-#             the result mail. Only root can execute now.
-#             Added the scanned dirs to mail.
-#   v0.003  - Corrected error in Infection detection.
-#             Added noscan option to cmdline
-#             Enhanced the mail output.
-#  v0.004   - Fixed "not found" sendmail bug. Added syslogging for sending
-#             emails with some details.
-#  v0.005   - Added [ClamAV-LAMP] to the Subject to ease the search
-#  v0.006   - Disable eMail sending feature. Global Log collector availabe.
-#  v0.007   - Implemented nice value for Clamscan.
-#  v0.008   - Increased the nice value for the ClamScan
-#
+#                                                                           #
+# ClamAV cron scan script                                                   #
+# by Roger Nem (2015)                                                       #
+#                                                                           #
+# History:                                                                  #
+# 	v0.001  - First Version                                                 #
+#	v0.002  - Added a more precise insert of the infected files list into   #
+#             the result mail. Only root can execute now.                   #
+#             Added the scanned dirs to mail.                               #
+#   v0.003  - Corrected error in Infection detection.                       #
+#             Added noscan option to cmdline                                #
+#             Enhanced the mail output.                                     #
+#  v0.004   - Fixed "not found" sendmail bug. Added syslogging for sending  #
+#             emails with some details.                                     #
+#  v0.005   - Added [ClamAV-LAMP] to the Subject to ease the search         #
+#  v0.006   - Disable eMail sending feature. Global Log collector availabe. #
+#  v0.007   - Implemented nice value for Clamscan.                          #
+#  v0.008   - Increased the nice value for the ClamScan                     #
+#                                                                           #
 #############################################################################
 
 # Exit 250 -> Script is not executed with root permissions
@@ -45,15 +45,15 @@ function do_remove_tmpfiles {
 
 # Scan the last result logfile and send a mail during infection
 function clamscanlogfile {
-	local SCANDIR="${*}"							# Value of the starting directory
-	local EMAILFROM="noreply@clamscan"				# Mail from
-	local EMAILTO="DL@domain.com"					# Mail to
-	local EMAILCC="CC@domain.com, CC2@domain.com"	# CC e-mails
-	local SUBJECT=""								# Subject will be generated below
-	local INFECTCOUNT=0								# Possible Infection Counter
-	local LASTBAR=""								# Last split line to the next file list
-	local ALLLINES=""								# All lines counted
-	local LINES2DISP=""								# Calculated to only display the important lines
+	local SCANDIR="${*}"                            # Value of the starting directory
+	local EMAILFROM="noreply@clamscan"              # Mail from
+	local EMAILTO="DL@domain.com"                   # Mail to
+	local EMAILCC="CC@domain.com, CC2@domain.com"   # CC e-mails
+	local SUBJECT=""                                # Subject will be generated below
+	local INFECTCOUNT=0                             # Possible Infection Counter
+	local LASTBAR=""                                # Last split line to the next file list
+	local ALLLINES=""                               # All lines counted
+	local LINES2DISP=""                             # Calculated to only display the important lines
 
 	if [ "${SCANDIR}" == "" ]; then
 		echo "You have not entered a directory to be scanned, thus aborting the script."
