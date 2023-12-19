@@ -1,0 +1,1 @@
+&$env:windir\system32\inetsrv\appcmd.exe list apppool "AppPool-cont-HKG-W12-HK-65" /text:ProcessModel.Password
