@@ -37,7 +37,7 @@ function do_remove_tmpfiles {
 function do_echo {
     local MSG="${1}"
     local LOGDATE=$(date +"%Y-%m-%d %H:%M:%S")
-	echo "${LOGDATE} - ${MSG}"
+    echo "${LOGDATE} - ${MSG}"
     echo "${LOGDATE} - ${MSG}" >> ${LOGFILE} #To log the output to migrate2ad.log
 }
 
@@ -81,43 +81,43 @@ function do_migrate_user {
             do_echo "Server: $SRV_NAME / Local User: $USR_LOCAL / AD User: $USR_AD"
 
             #####################################################
-			# START: Local account migration to AD - Dedicated
-			#####################################################
+            # START: Local account migration to AD - Dedicated
+            #####################################################
 
-			# SUDOERS
-			#echo "" >> /etc/sudoers
-			#echo "## Active Directory Project - DO NOT DELETE" >> /etc/sudoers
+            # SUDOERS
+            #echo "" >> /etc/sudoers
+            #echo "## Active Directory Project - DO NOT DELETE" >> /etc/sudoers
 
-			#do_echo "%domain_lamp_sudoers        ALL=(ALL)       ALL"
-			#echo "%domain_lamp_sudoers        ALL=(ALL)       ALL" >> /etc/sudoers
+            #do_echo "%domain_lamp_sudoers        ALL=(ALL)       ALL"
+            #echo "%domain_lamp_sudoers        ALL=(ALL)       ALL" >> /etc/sudoers
 
-			#do_echo "%domainfulladmin        ALL=(ALL)       ALL"
-			#echo "%domainfulladmin        ALL=(ALL)       ALL" >> /etc/sudoers
+            #do_echo "%domainfulladmin        ALL=(ALL)       ALL"
+            #echo "%domainfulladmin        ALL=(ALL)       ALL" >> /etc/sudoers
 
-			do_echo "%${SRV_NAME}        ALL=(ALL)       ALL"
-			echo "%${SRV_NAME}        ALL=(ALL)       ALL" >> /etc/sudoers
+            do_echo "%${SRV_NAME}        ALL=(ALL)       ALL"
+            echo "%${SRV_NAME}        ALL=(ALL)       ALL" >> /etc/sudoers
 
 
-			# Allowed Groups - Default - DSU
-			echo "" >> /etc/ssh/sshd_config
-			echo "## Active Directory Project - DO NOT DELETE" >> /etc/ssh/sshd_config
+            # Allowed Groups - Default - DSU
+            echo "" >> /etc/ssh/sshd_config
+            echo "## Active Directory Project - DO NOT DELETE" >> /etc/ssh/sshd_config
 
-			do_echo "AllowGroups domain_lamp_sudoers domainfulladmin cloudconnect wheel cloud"
-			echo "AllowGroups domain_lamp_sudoers domainfulladmin cloudconnect wheel cloud" >> /etc/ssh/sshd_config
+            do_echo "AllowGroups domain_lamp_sudoers domainfulladmin cloudconnect wheel cloud"
+            echo "AllowGroups domain_lamp_sudoers domainfulladmin cloudconnect wheel cloud" >> /etc/ssh/sshd_config
 
-			# Allowed Groups - Agency
-			do_echo "AllowGroups ${SRV_NAME}"
-			echo "AllowGroups ${SRV_NAME}" >> /etc/ssh/sshd_config
+            # Allowed Groups - Agency
+            do_echo "AllowGroups ${SRV_NAME}"
+            echo "AllowGroups ${SRV_NAME}" >> /etc/ssh/sshd_config
 
-			# Apply changes					
-			service sshd restart
+            # Apply changes
+            service sshd restart
 
-			# Clean-up to not expose user accounts
-			rm -rf ${SRCFILE}
+            # Clean-up to not expose user accounts
+            rm -rf ${SRCFILE}
 
-			#####################################################
-			# END: Local account migration to AD - Dedicated
-			#####################################################
+            #####################################################
+            # END: Local account migration to AD - Dedicated
+            #####################################################
 
         fi
     done
