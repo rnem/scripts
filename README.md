@@ -7,8 +7,8 @@
 
 ### Table of Contents
 
-- [.BAT](/bat)
 - [Bash|Shell](sh)/
+- [Batch](/bat)
 - [PHP](/php)
 - [PowerShell](/powershell)
 - [Python](/python)
