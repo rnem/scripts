@@ -7,7 +7,7 @@
 
 ### Table of Contents
 
-- [Bash|Shell](sh)/
+- [Bash|Shell](/bash_shell)
 - [Batch](/bat)
 - [PHP](/php)
 - [PowerShell](/powershell)
