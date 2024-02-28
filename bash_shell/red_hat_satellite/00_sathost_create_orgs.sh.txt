@@ -1,0 +1,26 @@
+#!/bin/bash
+#################################################################################
+# RED HAT SATELLLITE - Create Organizations                                     #
+# Created by Roger Nem - 2023                                                   #
+#################################################################################
+
+#
+# Enforce root
+#
+if [ ! $EUID ]; then
+    printf "Error: Must be run as root\n\n"
+    exit 1
+fi
+
+declare -a all_orgs
+
+all_orgs[0]='COMP_ORG1;COMP_ORG1;ORG1 organization uses Satellite server for updates.'
+all_orgs[1]='COMP_ORG2;COMP_ORG2;ORG2 organization.'
+
+for orgs in "${all_orgs[@]}"; do
+  IFS=";" read -r -a arr <<< "${orgs}"
+
+  echo "Creating Org ${arr[0]}"
+  hammer organization create --name "${arr[0]}" --label "${arr[1]}" --description "${arr[2]}"
+
+done
