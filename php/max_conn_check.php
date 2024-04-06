@@ -1,10 +1,10 @@
 <?php
 #################################################################################
-# Created by Roger Nem															#
-#																				#
-# Alert if the limit of DB connections reaches a defined threshold				#
-# It leverages MySQL connection													#
-#																				#
+# Created by Roger Nem                                                          #
+#                                                                               #
+# Alert if the limit of DB connections reaches a defined threshold              #
+# It leverages MySQL connection                                                 #
+#                                                                               #
 # v0.001 - Roger Nem -  File created - 2017                                     #
 #################################################################################
 

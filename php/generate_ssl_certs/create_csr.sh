@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #################################################################################
-# Created by Roger Nem															#
-#																				#
-# Generates CSR for SSL certificates											#
-#																				#
+# Created by Roger Nem                                                          #
+#                                                                               #
+# Generates CSR for SSL certificates                                            #
+#                                                                               #
 # v0.001 - Roger Nem -  File created - Aug 2017                                 #
 #################################################################################
 

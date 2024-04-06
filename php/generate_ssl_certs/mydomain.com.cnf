@@ -328,6 +328,6 @@ ess_cert_id_chain       = no    # Must the ESS cert id chain be included?
                                 # (optional, default: no)
 
 [ alt_names ]
-DNS.1=zakochanewzupach.pl
-DNS.2=www.zakochanewzupach.pl
-DNS.3=prod.zakochanewzupach.pl
+DNS.1=domain.com
+DNS.2=www.domain.com
+DNS.3=prod.domain.com
