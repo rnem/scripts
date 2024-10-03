@@ -63,7 +63,7 @@ function set_hostname
   hostnamectl set-hostname $1
 
   matches_in_hosts="$(grep -n $1 $hosts_file | cut -f1 -d:)"
-  host_entry="$2 $1.aws.spe.sony.com $1"
+  host_entry="$2 $1.aws.domain.com $1"
   if [ ! -z "$matches_in_hosts" ]
   then
     echo "Updating existing hosts entry."
