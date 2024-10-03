@@ -195,7 +195,7 @@ systemctl disable xinetd
 echo ""
 
 echo "2.2.1.3 Ensure chrony is configured (Scored)"
-echo "*** NTP is used at SPE, not Chrony."
+echo "*** NTP is used at Company, not Chrony."
 echo ""
 
 echo "2.2.2 Ensure X Window System is not installed (Scored)"
