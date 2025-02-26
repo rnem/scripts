@@ -1,0 +1,38 @@
+#################################################################
+# Script to Start Stopped EC2 instances in AWS                  #
+# Lambda is set with 128 MB and 1 minute to timeout             #
+# Created by Roger Nem - 2025                                   #
+# History:                                                      #
+# v0.001 - 02/26/25 - Roger Nem - First Version                 #
+#################################################################
+
+# Import AWS SDK for Python
+import boto3
+
+def lambda_handler(event, context):
+    # Create EC2 client for us-east-1 region
+    ec2 = boto3.client('ec2', region_name='us-east-1')
+    
+    # Get all EC2 instances
+    instances = ec2.describe_instances()
+    
+    started_instances = []
+    
+    # Iterate through reservations and instances
+    for reservation in instances['Reservations']:
+        for instance in reservation['Instances']:
+            # Check if instance is in stopped state
+            if instance['State']['Name'] == 'stopped':
+                try:
+                    # Start the stopped instance
+                    ec2.start_instances(InstanceIds=[instance['InstanceId']])
+                    started_instances.append(instance['InstanceId'])
+                    print(f'Started instance: {instance["InstanceId"]}')
+                except Exception as e:
+                    print(f'Error starting instance {instance["InstanceId"]}: {str(e)}')
+                
+    # Return success response with started instances
+    return {
+        'statusCode': 200,
+        'body': f'Successfully started {len(started_instances)} EC2 instances: {started_instances}'
+    }
