@@ -40,7 +40,7 @@ if not exist "%BACKUP_DIR%" (
 
 :: Execute PowerShell script directly from file with UTF-8 encoding
 echo Running PowerShell script to save drafts and close Outlook...
-powershell -ExecutionPolicy Bypass -Command "& {[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; . '%BASE_DIR%\SaveDrafts.ps1'}" >nul
+powershell -ExecutionPolicy Bypass -Command "& {[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; . '%BASE_DIR%\SaveOutlookDrafts.ps1'}" >nul
 set datepart=%date%
 for /f "tokens=1,2 delims=:" %%a in ("%time%") do set timepart=%%a:%%b
 echo %datepart% %timepart% - PowerShell script executed >> "%DEBUG_LOG%"
